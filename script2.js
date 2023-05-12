@@ -21,9 +21,10 @@ const obsCallBack = function (entries) {
   const [entry] = entries;
   //console.log(entry);
   if (entry.intersectionRatio >= 0.3) {
-    mainNavigator.classList.add('main-nav--sticky');
-  } else if (entry.intersectionRatio <= 0.2)
-    mainNavigator.classList.remove('main-nav--sticky');
+    //mainNavigator.classList.add('main-nav--sticky');
+  } else if (entry.intersectionRatio <= 0.2) {
+    //mainNavigator.classList.remove('main-nav--sticky');
+  }
 };
 const obsOptions = {
   root: null,
@@ -99,6 +100,13 @@ mainNavigator.addEventListener('mouseout', function (e) {
 //////////////////////////////////////////////
 const createAccount = function (e) {
   e.preventDefault();
+
+  if (currency.value !== 'USD' || locale.value !== 'en-US') {
+    console.log('Currency should be: USD\nLocale should be: en-US');
+    modal.classList.add('hidden');
+    return;
+  }
+
   const url = `http://127.0.0.1:3000/create?owner=${owner.value}&pin=${pin.value}&currency=${currency.value}&locale=${locale.value}`;
   console.log(owner.value, pin.value, currency.value, locale.value);
   fetch(url)
@@ -107,7 +115,8 @@ const createAccount = function (e) {
       if (!response.ok) console.log('NOT OK');
       else response.json().then(data => console.log(data));
     })
-    .catch(() => console.log('ERR'));
+    .catch(() => console.log('ERR'))
+    .finally(() => modal.classList.add('hidden'));
 };
 createAccBtn.addEventListener('click', createAccount);
 
