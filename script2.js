@@ -121,4 +121,3 @@ const createAccount = function (e) {
 createAccBtn.addEventListener('click', createAccount);
 
 ////////////////////////////////////////////////////
-console.log(`0x258e506B54131DF60999774fbf1F455Ff9cBd125`.toLowerCase());
