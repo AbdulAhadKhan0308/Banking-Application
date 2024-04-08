@@ -1,1 +1,1 @@
-# Digital CopyRight Application
+# Digital Copyright Application
